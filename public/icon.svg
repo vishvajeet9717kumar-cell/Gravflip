@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#141E17" />
+      <stop offset="100%" stop-color="#050806" />
+    </radialGradient>
+    <radialGradient id="orbGrad" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="35%" stop-color="#B7FF32" />
+      <stop offset="75%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#0B0F0C" />
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="16" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="128" fill="url(#bgGrad)" />
+
+  <!-- Outer Orbital Ring -->
+  <circle cx="256" cy="256" r="210" fill="none" stroke="#B7FF32" stroke-width="6" stroke-dasharray="16 12" opacity="0.75" />
+
+  <!-- Core Glowing Orb -->
+  <circle cx="256" cy="256" r="150" fill="url(#orbGrad)" filter="url(#glow)" stroke="#FFFFFF" stroke-width="4" />
+
+  <!-- Expressive Eyes -->
+  <circle cx="206" cy="235" r="18" fill="#0B0F0C" />
+  <circle cx="212" cy="229" r="6" fill="#FFFFFF" />
+
+  <circle cx="306" cy="235" r="18" fill="#0B0F0C" />
+  <circle cx="312" cy="229" r="6" fill="#FFFFFF" />
+
+  <!-- Smile / Determined mouth -->
+  <path d="M 230 280 Q 256 304 282 280" fill="none" stroke="#0B0F0C" stroke-width="7" stroke-linecap="round" />
+</svg>

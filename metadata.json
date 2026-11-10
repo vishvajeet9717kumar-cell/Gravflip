@@ -1,0 +1,6 @@
+{
+  "name": "GRAVFLIP",
+  "description": "The Gravity Is Your Weapon - A mobile-first futuristic neon 2D gravity-flipping platformer.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
