@@ -4,7 +4,7 @@
  * Does not intercept or interfere with browser localStorage.
  */
 
-const CACHE_VERSION = 'gravflip-v1.0.0';
+const CACHE_VERSION = 'gravflip-v1.0.1';
 const CACHE_NAME = `gravflip-cache-${CACHE_VERSION}`;
 
 // Core assets to pre-cache on install
@@ -20,6 +20,8 @@ const PRECACHE_ASSETS = [
   '/apple-touch-icon.png',
   '/screenshot-wide.png',
   '/screenshot-narrow.png',
+  '/privacy.html',
+  '/terms.html',
 ];
 
 // Install: pre-cache shell and assets

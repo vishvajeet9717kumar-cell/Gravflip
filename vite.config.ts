@@ -19,6 +19,8 @@ export default defineConfig(() => {
           'pwa-maskable-512x512.png',
           'screenshot-wide.png',
           'screenshot-narrow.png',
+          'privacy.html',
+          'terms.html',
         ],
         manifest: {
           id: '/',
