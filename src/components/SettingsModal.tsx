@@ -1,9 +1,10 @@
-import React from 'react';
-import { X, Volume2, VolumeX, Music, Sparkles, Sliders, FastForward } from 'lucide-react';
+import React, { useState } from 'react';
+import { X, Volume2, VolumeX, Music, Sparkles, Sliders, FastForward, Info } from 'lucide-react';
 import { WorldTheme } from '../game/types';
 import { audio } from '../game/audio';
 import { PWAInstallButton } from './PWAInstallButton';
 import { usePWAInstall } from '../hooks/usePWAInstall';
+import { AboutLegalModal } from './AboutLegalModal';
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -45,6 +46,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   onChangeControlOpacity,
 }) => {
   const { isInstallable, isInstalled, isIOS } = usePWAInstall();
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
   if (!isOpen) return null;
 
   return (
@@ -277,6 +279,31 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               <PWAInstallButton accentColor={theme.primary} />
             </div>
           )}
+
+          {/* About, Privacy & Support row for Play Store compliance */}
+          <div className="bg-white/5 p-3.5 rounded-2xl border border-white/5 flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <Info className="w-4 h-4" style={{ color: theme.primary }} />
+              <div>
+                <span className="block text-xs font-bold uppercase tracking-wider text-white/90">
+                  About & Legal
+                </span>
+                <span className="block text-[10px] text-neutral-400">
+                  Privacy Policy, Developer & Contact
+                </span>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                audio.playClick();
+                setIsAboutOpen(true);
+              }}
+              className="px-3 py-1.5 rounded-xl text-xs font-bold uppercase bg-white/10 hover:bg-white/20 active:scale-95 border border-white/15 text-white transition-all cursor-pointer"
+            >
+              View
+            </button>
+          </div>
         </div>
 
         {/* Done Button */}
@@ -294,6 +321,13 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           Save & Return
         </button>
       </div>
+
+      {/* In-App About & Legal Modal */}
+      <AboutLegalModal
+        isOpen={isAboutOpen}
+        onClose={() => setIsAboutOpen(false)}
+        theme={theme}
+      />
     </div>
   );
 };

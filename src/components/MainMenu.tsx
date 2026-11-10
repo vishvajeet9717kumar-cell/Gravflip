@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Play,
   Grid,
@@ -13,6 +13,7 @@ import {
 import { WorldTheme, OrbSkin } from '../game/types';
 import { audio } from '../game/audio';
 import { PWAInstallButton } from './PWAInstallButton';
+import { AboutLegalModal } from './AboutLegalModal';
 
 interface MainMenuProps {
   theme: WorldTheme;
@@ -36,6 +37,7 @@ interface MainMenuProps {
 }
 
 export const MainMenu: React.FC<MainMenuProps> = ({
+  theme,
   equippedSkin,
   totalCrystals,
   totalStars,
@@ -54,6 +56,7 @@ export const MainMenu: React.FC<MainMenuProps> = ({
   onOpenTimeAttack,
   onStartEndless,
 }) => {
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
   return (
     <div
       className="absolute inset-0 z-30 flex flex-col justify-between p-4 sm:p-7 select-none text-white backdrop-blur-sm overflow-y-auto"
@@ -271,8 +274,25 @@ export const MainMenu: React.FC<MainMenuProps> = ({
       {/* Footer Info */}
       <div className="w-full max-w-4xl mx-auto flex items-center justify-between text-[11px] text-white/40 font-mono pb-1">
         <span>40 ROOMS • 8 WORLDS</span>
+        <button
+          type="button"
+          onClick={() => {
+            audio.playClick();
+            setIsAboutOpen(true);
+          }}
+          className="hover:text-emerald-400 text-white/60 underline tracking-wider cursor-pointer transition-colors"
+        >
+          ABOUT & PRIVACY
+        </button>
         <span>HTML5 CANVAS 60FPS</span>
       </div>
+
+      {/* In-App About & Legal Modal */}
+      <AboutLegalModal
+        isOpen={isAboutOpen}
+        onClose={() => setIsAboutOpen(false)}
+        theme={theme}
+      />
     </div>
   );
 };
